@@ -93,8 +93,11 @@ Zero to Vibe Coding
 - 첫 번째 실행
 - 첫 번째 AI 협업
 - 숫자 맞추기 게임
-- Todo 앱
 - 필요한 문법만 배우기
+
+앞으로 웹 튜토리얼에 추가할 단계
+
+- Todo 앱
 
 ---
 
@@ -120,7 +123,7 @@ zero-to-vibe-coding/
 - input와 print
 - Codex 첫 사용
 - 숫자 맞추기 게임
-- Todo 앱
+- Todo 앱(확장 예정)
 
 ---
 
@@ -136,6 +139,7 @@ zero-to-vibe-coding/
 # 앞으로 추가될 내용
 
 - Windows 버전
+- Todo 앱 웹 튜토리얼 단계
 - Git/GitHub
 - API 사용
 - 웹앱 만들기
