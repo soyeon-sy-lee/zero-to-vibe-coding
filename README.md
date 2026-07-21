@@ -4,7 +4,7 @@
 
 ## Demo
 
-https://soyeon-sy-lee.github.io/zero-to-vibe-coding/
+[웹 튜토리얼 데모](https://soyeon-sy-lee.github.io/zero-to-vibe-coding/) · [교재 PDF](<Zero_to_Vibe_Coding_초판(2).pdf>)
 
 # 🚀 시작하기 전에 (가장 중요!)
 
