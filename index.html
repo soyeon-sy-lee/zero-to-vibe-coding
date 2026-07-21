@@ -223,6 +223,51 @@
       visibility: visible;
     }
 
+    .book-resource {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: center;
+      margin: 0 0 30px;
+      padding: 24px 26px;
+      border: 1px solid rgba(29, 107, 79, 0.18);
+      border-radius: 22px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(232, 243, 237, 0.92));
+      box-shadow: 0 14px 36px rgba(29, 51, 40, 0.08);
+    }
+
+    .book-resource p { margin: 0; color: #3e4a42; }
+
+    .book-resource-title {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--green-dark);
+      font-size: clamp(1.18rem, 2.5vw, 1.55rem);
+      font-weight: 850;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+
+    .book-resource-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 14px;
+    }
+
+    .book-chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 0 10px;
+      border: 1px solid rgba(29, 107, 79, 0.16);
+      border-radius: 999px;
+      color: var(--green-dark);
+      background: rgba(255, 255, 255, 0.72);
+      font-size: 0.78rem;
+      font-weight: 800;
+    }
+
     .hero-card {
       display: flex;
       flex-direction: column;
@@ -650,6 +695,8 @@
       .hero-copy, .hero-card, .lesson { border-radius: 22px; }
       .hero-copy { padding: 34px 26px; }
       .hero-card { padding: 26px; }
+      .book-resource { grid-template-columns: 1fr; padding: 22px; }
+      .book-resource .button { width: 100%; }
       .info-panel summary { padding: 20px 22px; }
       .info-content { grid-template-columns: 1fr; padding: 0 22px 24px; }
       .setup { align-items: flex-start; flex-direction: column; }
@@ -694,6 +741,7 @@
         <p>터미널이 무엇인지, 파일이 어디에 생기는지 몰라도 괜찮습니다. 한 단계씩 따라 하며 Python 파일을 실행하고 Codex에게 자연어로 수정을 요청해보세요.</p>
         <div class="hero-actions">
           <button class="button" id="startButton" type="button">튜토리얼 시작하기 →</button>
+          <a class="button secondary" href="Zero_to_Vibe_Coding_초판(2).pdf" target="_blank" rel="noopener">기초 교재 열기</a>
           <button class="button secondary" id="resumeButton" type="button" hidden>이어하기</button>
         </div>
       </div>
@@ -708,6 +756,21 @@
           <li><span class="check">✓</span><span>Codex로 코드 수정하기</span></li>
         </ul>
       </aside>
+    </section>
+
+    <section class="book-resource" aria-labelledby="book-resource-title">
+      <div>
+        <strong class="book-resource-title" id="book-resource-title">처음이라면 PDF 교재부터 천천히 읽어보세요.</strong>
+        <p><b>Zero to Vibe Coding 초판 베타 1.0</b>은 코딩 경험이 전혀 없는 사람을 위해 Python 설치 확인, 터미널, 프로젝트 폴더, 첫 파일 실행, ChatGPT와 Codex 협업을 더 낮은 단계부터 설명하는 44쪽 기초 교재입니다.</p>
+        <div class="book-resource-meta" aria-label="교재 핵심 내용">
+          <span class="book-chip">Python 첫 실행</span>
+          <span class="book-chip">터미널 기초</span>
+          <span class="book-chip">Codex 첫 요청</span>
+          <span class="book-chip">숫자 게임</span>
+          <span class="book-chip">Todo 앱</span>
+        </div>
+      </div>
+      <a class="button" href="Zero_to_Vibe_Coding_초판(2).pdf" target="_blank" rel="noopener">PDF 교재 보기</a>
     </section>
 
     <section class="home-info" aria-label="튜토리얼 안내">
@@ -1099,13 +1162,114 @@
       }
     ];
 
-    const finalStep = {
-      title: "다음 프로젝트: 숫자 맞추기 게임",
-      description: ["첫 과정을 완료했습니다. 이제 Codex에게 작은 게임을 만들어 달라고 요청해보세요."],
-      action: "현재 프로젝트에 number_game.py 파일을 새로 만들어줘.\n\n1부터 100 사이의 숫자를 맞추는 게임을 만들어줘.\n정답보다 작으면 더 큰 숫자라고 알려주고,\n정답보다 크면 더 작은 숫자라고 알려줘.\n정답을 맞히면 축하 메시지를 출력하고 종료해줘.\n초보자가 이해하기 쉽게 작성하고 직접 테스트해줘.",
-      expected: "🎉 첫 번째 바이브코딩 입문 과정을 완료했습니다.\n\n처음부터 모든 코드를 이해할 필요는 없습니다. 원하는 기능을 말하고, 결과를 실행하고, 불편한 점을 다시 요청하면 됩니다.",
-      final: true
-    };
+    const vibeCodingSteps = [
+      {
+        title: "숫자 맞추기 게임 만들기",
+        description: [
+          "이제 새 파일로 첫 작은 프로젝트를 시작합니다.",
+          "핵심은 완벽한 게임을 한 번에 만드는 것이 아니라, 작동하는 첫 버전을 빨리 만들어보는 것입니다."
+        ],
+        action: "Codex 입력창에 붙여넣기:\n\n현재 프로젝트에 number_game.py 파일을 새로 만들어줘.\n\n1부터 100 사이의 숫자를 맞추는 게임을 만들어줘.\n정답보다 작으면 더 큰 숫자라고 알려주고,\n정답보다 크면 더 작은 숫자라고 알려줘.\n정답을 맞히면 축하 메시지를 출력하고 종료해줘.\n초보자가 이해하기 쉽게 작성하고 직접 테스트해줘.",
+        expected: "number_game.py 파일이 만들어지고, 실행했을 때 숫자를 입력하며 게임을 할 수 있으면 성공입니다.",
+        faq: "Q. Codex가 만든 코드를 전부 이해해야 하나요?\n\nA. 아닙니다. 처음에는 실행해보고 내가 원하는 대로 움직이는지 확인하는 것이 먼저입니다.",
+        guide: [
+          '<span class="guide-emoji">✅</span> 지금 해야 할 일: Codex에게 숫자 맞추기 게임의 첫 버전을 만들어 달라고 요청하세요.',
+          '<span class="guide-emoji">💡</span> 지금 배우는 것: 자연어 요청으로 새 Python 파일을 만드는 흐름을 익힙니다.',
+          '<span class="guide-emoji">🎉</span> 잘됐을 때: number_game.py가 생기고 터미널에서 실행됩니다.',
+          '<span class="guide-emoji">🖥️</span> 다음엔: 직접 플레이하며 불편한 점을 찾아볼 거예요.'
+        ]
+      },
+      {
+        title: "직접 플레이하고 아쉬운 점 찾기",
+        description: [
+          "바이브코딩은 AI가 만든 결과를 내가 써보고 다음 요구사항을 발견하는 방식입니다.",
+          "잘 만든 기능을 상상하려고 애쓰기보다, 플레이하다가 불편한 순간을 그대로 적어보세요."
+        ],
+        action: "터미널에 입력:\n\npython number_game.py\n\n안 되면:\n\npython3 number_game.py\n\n게임을 3번 정도 해보고 아래 질문에 답해보세요.\n\n1. 글자를 입력하면 어떻게 되나요?\n2. 중간에 그만두고 싶을 때 방법이 있나요?\n3. 몇 번 만에 맞혔는지 알 수 있나요?\n4. 다시 플레이하려면 어떻게 해야 하나요?\n5. 안내 문장이 충분히 친절한가요?\n\n떠오르는 아쉬운 점을 2개만 적으세요.",
+        expected: "완벽한 기획서가 아니라 짧은 메모면 충분합니다. 예: 글자를 입력하면 꺼진다, q로 나가고 싶다, 시도 횟수를 보고 싶다.",
+        faq: "Q. 아쉬운 점이 별로 안 떠올라요.\n\nA. 정상입니다. 일부러 이상한 입력을 넣어보면 요구사항이 더 잘 보입니다. abc, 빈 입력, 0, 101, q를 차례로 넣어보세요.",
+        guide: [
+          '<span class="guide-emoji">✅</span> 지금 해야 할 일: 게임을 직접 실행하고 이상한 입력도 넣어보세요.',
+          '<span class="guide-emoji">💡</span> 지금 배우는 것: 오류와 불편함을 다음 기능의 재료로 바꾸는 방법입니다.',
+          '<span class="guide-emoji">🎉</span> 잘됐을 때: 고치고 싶은 점 2개가 생기면 성공입니다.',
+          '<span class="guide-emoji">🖥️</span> 다음엔: 그 아쉬운 점을 추가 기능 후보로 정리합니다.'
+        ]
+      },
+      {
+        title: "추가 기능 후보 고르기",
+        description: [
+          "처음부터 멋진 기능을 많이 넣지 않아도 됩니다.",
+          "초보자가 떠올리기 쉬운 기능 중에서 지금 가장 불편했던 것 1~2개만 고르면 충분합니다."
+        ],
+        action: "아래 예시에서 마음에 드는 기능을 고르세요.\n\n- 글자나 빈 입력을 넣어도 꺼지지 않게 하기\n- q를 입력하면 중간 종료하기\n- 시도 횟수 보여주기\n- 정답을 맞힌 뒤 다시 할지 물어보기\n- 쉬움, 보통, 어려움 난이도 선택하기\n- 0이나 101처럼 범위 밖 숫자 안내하기\n- 점수 만들기\n- 정답과 가까우면 힌트 보여주기\n\n처음 추천 조합:\n\n1. 잘못된 입력 처리\n2. q로 중간 종료\n3. 시도 횟수 보여주기",
+        expected: "기능을 하나만 골라도 괜찮습니다. 지금은 '내가 직접 써보고 고른 기능'이라는 점이 가장 중요합니다.",
+        faq: "Q. 점수, 난이도, 저장 기능을 한 번에 넣어도 되나요?\n\nA. 가능은 하지만 처음에는 1~2개만 넣는 편이 좋습니다. 작게 고치고 다시 실행하는 경험이 더 중요합니다.",
+        guide: [
+          '<span class="guide-emoji">✅</span> 지금 해야 할 일: 추가할 기능 1~2개를 고르세요.',
+          '<span class="guide-emoji">💡</span> 지금 배우는 것: 기능 기획은 거창한 문서가 아니라 관찰에서 시작됩니다.',
+          '<span class="guide-emoji">🎉</span> 잘됐을 때: "이 기능을 넣고 싶다"는 문장이 나오면 충분합니다.',
+          '<span class="guide-emoji">🖥️</span> 다음엔: 선택한 기능을 Codex 요청으로 바꿉니다.'
+        ]
+      },
+      {
+        title: "Codex에게 첫 개선 요청하기",
+        description: [
+          "이제 아쉬운 점을 그대로 기능 요청으로 바꿉니다.",
+          "프롬프트가 완벽할 필요는 없지만 대상 파일, 원하는 기능, 유지할 것, 테스트 요청이 들어가면 좋습니다."
+        ],
+        action: "Codex 입력창에 붙여넣기:\n\nnumber_game.py를 개선해줘.\n\n내가 직접 플레이해보니 아쉬운 점이 있었어.\n1. 숫자가 아닌 글자를 입력하면 프로그램이 꺼질 수 있어.\n2. 중간에 그만두는 방법이 없어.\n3. 몇 번 시도했는지 알 수 없어.\n\n아래 기능을 추가해줘.\n- 숫자가 아닌 입력은 안내하고 다시 입력받기\n- q 또는 Q를 입력하면 중간 종료하기\n- 정상 숫자를 입력한 횟수 보여주기\n\n기존 숫자 맞추기 기능은 유지해줘.\n수정 후 직접 테스트하고, 초보자가 이해해야 할 코드 부분만 설명해줘.",
+        expected: "Codex가 number_game.py를 수정하고 테스트 결과를 보여줍니다. 변경 대상이 number_game.py인지 꼭 확인하세요.",
+        faq: "Q. 내 아쉬운 점이 예시와 다르면 어떻게 하나요?\n\nA. 예시 문장에서 1, 2, 3번만 내가 찾은 아쉬운 점으로 바꾸면 됩니다.",
+        guide: [
+          '<span class="guide-emoji">✅</span> 지금 해야 할 일: 선택한 기능을 Codex에게 요청하세요.',
+          '<span class="guide-emoji">💡</span> 지금 배우는 것: 관찰한 문제를 코드 변경 요청으로 바꾸는 법입니다.',
+          '<span class="guide-emoji">🎉</span> 잘됐을 때: Codex가 수정한 내용과 테스트 결과를 보여줍니다.',
+          '<span class="guide-emoji">🖥️</span> 다음엔: AI가 고쳤다고 해도 직접 다시 테스트합니다.'
+        ]
+      },
+      {
+        title: "개선된 게임 다시 테스트하기",
+        description: [
+          "AI가 테스트했다고 해도 내가 실제 사용자처럼 다시 실행해야 합니다.",
+          "테스트는 어려운 개발자 일이 아니라, 내가 누를 법한 입력을 차례대로 넣어보는 일입니다."
+        ],
+        action: "터미널에서 실행:\n\npython number_game.py\n\n테스트 체크리스트:\n\n- abc 입력\n- 빈 값 입력\n- 0 또는 101 입력\n- q와 Q 입력\n- 정답보다 작은 수 입력\n- 정답보다 큰 수 입력\n- 정답 맞힌 뒤 시도 횟수 확인\n\n문제가 있으면 아래처럼 다시 요청하세요.\n\n방금 테스트해보니 [문제]가 있었어.\n[입력값]을 넣었을 때 [결과]가 나왔어.\n이 경우에는 [원하는 결과]가 되게 수정해줘.\n기존 기능은 유지하고 다시 테스트해줘.",
+        expected: "잘못된 입력에도 게임이 갑자기 꺼지지 않고, q로 종료할 수 있고, 정상 숫자 입력 횟수가 표시되면 좋습니다.",
+        faq: "Q. Codex가 한 번에 완벽하게 못 고치면 실패인가요?\n\nA. 아닙니다. 다시 실행하고 다시 요청하는 반복이 바이브코딩의 핵심입니다.",
+        guide: [
+          '<span class="guide-emoji">✅</span> 지금 해야 할 일: 정상 입력과 이상한 입력을 모두 테스트하세요.',
+          '<span class="guide-emoji">💡</span> 지금 배우는 것: 테스트 결과를 다음 프롬프트의 근거로 쓰는 방법입니다.',
+          '<span class="guide-emoji">🎉</span> 잘됐을 때: 문제가 없거나, 다음에 고칠 문제가 또렷해집니다.',
+          '<span class="guide-emoji">🖥️</span> 다음엔: 이번에는 직접 두 번째 개선 기능을 기획합니다.'
+        ]
+      },
+      {
+        title: "두 번째 개선 직접 기획하기",
+        description: [
+          "이번 단계부터는 예시를 그대로 복사하지 말고, 내가 원하는 기능을 하나 골라 문장을 바꿔봅니다.",
+          "기능 이름을 정확히 몰라도 됩니다. 내가 원하는 사용 경험을 말하면 됩니다."
+        ],
+        action: "아래 중 하나를 고르고 Codex에게 요청하세요.\n\n추천 기능:\n\n- 정답을 맞힌 뒤 다시 플레이할지 물어보기\n- 쉬움, 보통, 어려움 난이도 선택하기\n- 시도 횟수에 따라 점수 계산하기\n- 정답과 가까우면 '거의 다 왔어요' 같은 힌트 보여주기\n- 최고 기록을 파일에 저장하기\n\n짧은 요청 예시:\n\nnumber_game.py에 다시 플레이 기능을 추가해줘.\n정답을 맞히면 \"다시 하시겠습니까? (y/n)\"라고 묻고,\ny를 입력하면 새 정답으로 다시 시작하게 해줘.\nn을 입력하면 종료해줘.\n기존의 잘못된 입력 처리와 q 종료 기능은 유지해줘.\n수정 후 직접 테스트해줘.",
+        expected: "내가 고른 기능이 하나 더 들어가고, 기존 기능이 그대로 작동하면 성공입니다.",
+        faq: "Q. 최고 기록 저장 같은 기능은 어려워 보여요.\n\nA. 맞습니다. 조금 더 어렵습니다. 처음에는 다시 플레이, 난이도, 점수처럼 눈에 바로 보이는 기능부터 추천합니다.",
+        guide: [
+          '<span class="guide-emoji">✅</span> 지금 해야 할 일: 예시 기능 중 하나를 골라 내 말로 요청하세요.',
+          '<span class="guide-emoji">💡</span> 지금 배우는 것: 제공된 프롬프트를 내 요구사항으로 바꾸는 연습입니다.',
+          '<span class="guide-emoji">🎉</span> 잘됐을 때: 내가 직접 기획한 기능이 게임에 들어갑니다.',
+          '<span class="guide-emoji">🖥️</span> 다음엔: 지금 만든 반복 과정을 짧게 정리합니다.'
+        ]
+      },
+      {
+        title: "완료: 바이브코딩 루프 정리하기",
+        description: [
+          "첫 번째 바이브코딩 루프를 끝냈습니다.",
+          "이제 중요한 것은 코드 줄 수가 아니라, 내가 사용해보고 개선 방향을 정했다는 사실입니다."
+        ],
+        action: "README나 메모장에 아래 내용을 짧게 적어보세요.\n\n1. 처음 만든 기능:\n2. 직접 써보고 찾은 아쉬움:\n3. 추가한 기능:\n4. 테스트해본 입력:\n5. 다음에 넣고 싶은 기능:\n\n예시:\n\n처음에는 숫자 맞추기 게임만 만들었다.\n직접 해보니 글자 입력에서 꺼지고 중간 종료가 없어서 불편했다.\nCodex에게 잘못된 입력 처리, q 종료, 시도 횟수를 추가해 달라고 요청했다.\nabc, q, Q, 작은 수, 큰 수를 테스트했다.\n다음에는 다시 플레이 기능을 넣고 싶다.",
+        expected: "첫 번째 바이브코딩 입문 과정을 완료했습니다.\n\n원하는 기능을 말하고, 결과를 실행하고, 불편한 점을 찾고, 다시 요청하는 흐름을 직접 경험했습니다.",
+        final: true
+      }
+    ];
 
     const macLabs = [
       {
@@ -1202,11 +1366,47 @@
       "bash", "bash", "bash", "python", "python", "python", "bash", "python"
     ];
 
-    const finalLab = {
-      description: "숫자 맞추기 게임의 핵심 조건문을 Bash 실행 명령과 함께 테스트합니다.",
-      bash: "python3 number_game.py",
-      python: "answer = 42\nguess = int(input(\"1~100 사이 숫자를 입력하세요: \"))\n\nif guess < answer:\n    print(\"더 큰 숫자입니다.\")\nelif guess > answer:\n    print(\"더 작은 숫자입니다.\")\nelse:\n    print(\"정답입니다! 🎉\")"
-    };
+    const vibeCodingLabs = [
+      {
+        description: "숫자 맞추기 게임의 첫 버전에서 핵심 조건문을 먼저 실행해봅니다.",
+        bash: "python3 number_game.py",
+        python: "answer = 42\nguess = int(input(\"1~100 사이 숫자를 입력하세요: \"))\n\nif guess < answer:\n    print(\"더 큰 숫자입니다.\")\nelif guess > answer:\n    print(\"더 작은 숫자입니다.\")\nelse:\n    print(\"정답입니다!\")"
+      },
+      {
+        description: "일부러 이상한 입력을 넣었을 때 왜 개선이 필요한지 확인합니다.",
+        bash: "python3 number_game.py",
+        python: "user_input = input(\"숫자를 입력하세요: \")\n\nprint(\"내가 입력한 값:\", user_input)\nprint(\"이 값이 숫자인지, 종료 요청인지, 범위 안인지 확인하는 기능이 필요할 수 있어요.\")"
+      },
+      {
+        description: "추가 기능 후보를 코드 안의 목록처럼 정리해봅니다.",
+        bash: "python3 number_game.py",
+        python: "features = [\n    \"잘못된 입력 처리\",\n    \"q로 중간 종료\",\n    \"시도 횟수 보여주기\",\n    \"다시 플레이\",\n    \"난이도 선택\",\n    \"점수 만들기\",\n]\n\nfor i, feature in enumerate(features, start=1):\n    print(i, feature)"
+      },
+      {
+        description: "잘못된 입력, q 종료, 시도 횟수가 들어간 개선 방향을 미리 실행해봅니다.",
+        bash: "python3 number_game.py",
+        python: "answer = 42\nattempts = 0\n\nwhile True:\n    user_input = input(\"숫자를 입력하세요(q: 종료): \")\n\n    if user_input.lower() == \"q\":\n        print(\"게임을 종료합니다. 정답은\", answer, \"였습니다.\")\n        break\n\n    if not user_input.isdigit():\n        print(\"숫자만 입력해주세요.\")\n        continue\n\n    guess = int(user_input)\n    attempts += 1\n\n    if guess < answer:\n        print(\"더 큰 숫자입니다.\")\n    elif guess > answer:\n        print(\"더 작은 숫자입니다.\")\n    else:\n        print(\"정답입니다! 시도 횟수:\", attempts)\n        break"
+      },
+      {
+        description: "체크리스트처럼 여러 입력을 상상하며 테스트 흐름을 확인합니다.",
+        bash: "python3 number_game.py",
+        python: "tests = [\"abc\", \"\", \"0\", \"101\", \"q\", \"Q\", \"30\", \"70\", \"42\"]\n\nfor value in tests:\n    print(\"테스트 입력:\", repr(value))\n    if value.lower() == \"q\":\n        print(\"- 중간 종료 확인\")\n    elif not value.isdigit():\n        print(\"- 숫자가 아니므로 안내 필요\")\n    elif not 1 <= int(value) <= 100:\n        print(\"- 범위 밖 숫자 안내 필요\")\n    else:\n        print(\"- 정상 숫자 입력\")"
+      },
+      {
+        description: "두 번째 개선으로 다시 플레이 기능의 핵심 흐름을 연습합니다.",
+        bash: "python3 number_game.py",
+        python: "play_again = input(\"다시 하시겠습니까? (y/n): \")\n\nif play_again.lower() == \"y\":\n    print(\"새 게임을 시작합니다.\")\nelif play_again.lower() == \"n\":\n    print(\"게임을 종료합니다.\")\nelse:\n    print(\"y 또는 n으로 입력해주세요.\")"
+      },
+      {
+        description: "완료 단계에서는 내가 만든 변화와 다음 아이디어를 짧게 정리합니다.",
+        bash: "python3 number_game.py",
+        python: "summary = {\n    \"처음 만든 것\": \"숫자 맞추기 게임\",\n    \"찾은 아쉬움\": \"잘못된 입력, 중간 종료, 시도 횟수\",\n    \"추가한 기능\": \"입력 처리와 종료 흐름\",\n    \"다음 아이디어\": \"다시 플레이 또는 난이도 선택\",\n}\n\nfor key, value in summary.items():\n    print(key + \":\", value)"
+      }
+    ];
+
+    const vibeCodingRuntimeTypes = [
+      "python", "python", "python", "python", "python", "python", "python"
+    ];
 
     const storage = {
       get(key) {
@@ -1228,6 +1428,7 @@
     const $ = (selector) => document.querySelector(selector);
     const lesson = $("#lesson");
     const intro = $("#intro");
+    const homeOnlySections = document.querySelectorAll(".book-resource, .home-info");
     const LESSON_HASH_PATTERN = /^#lesson-(\d+)$/;
     const BASH_HELP_TEXT = "Bash는 컴퓨터에게 글씨로 일을 시키는 작은 도구예요. 터미널에 입력하면 폴더를 만들거나 이동할 수 있어요.";
     const PYTHON_HELP_TEXT = "Python은 컴퓨터에게 무엇을 할지 알려주는 언어예요. 코드를 쓰면 컴퓨터가 대신 실행해 줘요.";
@@ -1286,7 +1487,7 @@
     }
 
     function steps() {
-      return [...(state.os === "mac" ? macSteps : windowsSteps), finalStep];
+      return [...(state.os === "mac" ? macSteps : windowsSteps), ...vibeCodingSteps];
     }
 
     function save() {
@@ -1323,7 +1524,7 @@
         button.setAttribute("aria-pressed", String(button.dataset.os === state.os));
       });
 
-      $("#stepCount").textContent = isFinal ? "BONUS PROJECT" : `STEP ${state.index + 1} · ${tutorialCount}`;
+      $("#stepCount").textContent = isFinal ? "FINISH" : `STEP ${state.index + 1} · ${tutorialCount}`;
       $("#stepTitle").textContent = step.title;
       $("#stepDescription").innerHTML = step.description.map((paragraph) => `<p>${wrapHelpTerms(paragraph)}</p>`).join("");
       const guide = step.guide || [];
@@ -1346,7 +1547,7 @@
       $("#prevButton").disabled = state.index === 0;
       $("#prevButton").style.visibility = state.index === 0 ? "hidden" : "visible";
       $("#nextButton").textContent = isFinal ? "처음부터 다시 보기 ↺" : "다 했어요 →";
-      $("#completeNote").textContent = isFinal ? "멋져요. 이제 직접 만들어볼 차례예요." : "다 했다면 다음 단계로 넘어가세요.";
+      $("#completeNote").textContent = isFinal ? "멋져요. 이제 이 흐름을 다른 프로젝트에 적용할 수 있어요." : "다 했다면 다음 단계로 넘어가세요.";
       $("#progressBar").style.width = `${progress}%`;
       $("#progressLabel").textContent = isFinal ? "완료" : `${state.index + 1}/${tutorialCount}`;
       $("#chatgptStatus").textContent = "";
@@ -1358,6 +1559,7 @@
     function showHome() {
       intro.hidden = false;
       lesson.hidden = true;
+      homeOnlySections.forEach((section) => { section.hidden = false; });
       replaceHash("#top");
       renderChoices();
       if (state.started) {
@@ -1373,6 +1575,7 @@
       state.started = true;
       state.index = index;
       intro.hidden = true;
+      homeOnlySections.forEach((section) => { section.hidden = true; });
       lesson.hidden = false;
       render();
       replaceHash(`#lesson-${state.index + 1}`);
@@ -1935,12 +2138,15 @@ ${runtimeContext}
     });
 
     function renderLab(isFinal) {
-      const lab = isFinal
-        ? finalLab
-        : (state.os === "mac" ? macLabs[state.index] : windowsLabs[state.index]);
-      const runtimeType = isFinal
-        ? "python"
-        : (state.os === "mac" ? macRuntimeTypes[state.index] : "bash");
+      const baseLabs = state.os === "mac" ? macLabs : windowsLabs;
+      const baseRuntimeTypes = state.os === "mac" ? macRuntimeTypes : ["bash"];
+      const vibeIndex = state.index - baseLabs.length;
+      const lab = state.index < baseLabs.length
+        ? baseLabs[state.index]
+        : vibeCodingLabs[vibeIndex];
+      const runtimeType = state.index < baseRuntimeTypes.length
+        ? baseRuntimeTypes[state.index]
+        : vibeCodingRuntimeTypes[vibeIndex];
 
       currentBashExample = lab.bash;
       currentPythonExample = lab.python;
