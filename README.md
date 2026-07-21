@@ -2,6 +2,10 @@
 
 > 코딩을 한 번도 해보지 않은 사람이 **Python + Codex + ChatGPT**로 첫 프로그램을 만드는 프로젝트
 
+## 데모 바로가기
+
+https://soyeon-sy-lee.github.io/zero-to-vibe-coding/
+
 # 🚀 시작하기 전에 (가장 중요!)
 
 이 프로젝트는 책처럼 혼자 읽는 튜토리얼이 아닙니다.
