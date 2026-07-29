@@ -141,6 +141,4 @@ zero-to-vibe-coding/
 - Windows 버전
 - Todo 앱 웹 튜토리얼 단계
 - Git/GitHub
-- API 사용
 - 웹앱 만들기
-- 포트폴리오 프로젝트
